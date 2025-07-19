@@ -11,7 +11,7 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 
 local config = {
   cmd = {
-    'java',
+    '/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin/java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -54,11 +54,21 @@ local config = {
       format = {
         enabled = false,
       },
+      runtimes = {
+        {
+          name = 'JavaSE-1.8',
+          path = '/Library/Java/JavaVirtualMachines/jdk1.8.0_311.jdk/Contents/Home',
+        },
+        {
+          name = 'JavaSE-21',
+          path = '/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home',
+        },
+      },
     },
   },
 
   init_options = {
-    bundles = {},
+    bundles = { vim.fn.glob('path/to/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', 1) },
   },
 }
 require('jdtls').start_or_attach(config)
