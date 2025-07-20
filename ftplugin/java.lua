@@ -68,7 +68,10 @@ local config = {
   },
 
   init_options = {
-    bundles = { vim.fn.glob('path/to/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', 1) },
+    bundles = {
+      vim.fn.glob('/Users/ralph/Downloads/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', true),
+      vim.fn.glob('/Users/ralph/Downloads/vscode-java-test/server/*.jar', true),
+    },
   },
 }
 require('jdtls').start_or_attach(config)
